@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Params } from '@angular/router';
 import { Iproduct } from 'src/app/shared/models/user';
 import { ProductsService } from 'src/app/shared/services/products.service';
 
@@ -17,6 +17,13 @@ export class ProductComponent implements OnInit {
     this.productId = +this._route.snapshot.params['productId']
     this.productinfo = this._productService.getSingleProduct(this.productId)
     console.log(this.productId);
+
+
+    this._route.params
+      .subscribe((params:Params)=>{
+        this.productId = +params['productId'];
+        this.productinfo =this._productService.getSingleProduct(this.productId)
+      })
   }
   
   
