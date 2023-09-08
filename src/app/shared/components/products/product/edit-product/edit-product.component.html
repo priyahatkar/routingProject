@@ -1,0 +1,18 @@
+
+
+
+<div class="form-group">
+    <label for="pName">pName</label>
+    <input type="text" #pName [value]="pObj.pName" id="pName" placeholder="User Name" class="form-control">
+</div>
+<div class="form-group">
+    <select name="" #status  class="form-control" [value]="pObj.pStatus">
+        <option value=""></option>
+        <option value="Inprogress">In progress</option>
+        <option value="Dispatched">Dispatched</option>
+        <option value="Delivered">Delivered</option>
+    </select>
+</div>
+<div class="text-right">
+    <button class="btn btn-info" (click)="onUpdateProduct(pName ,status)">Update Product</button>
+</div>

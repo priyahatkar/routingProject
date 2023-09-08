@@ -1,4 +1,4 @@
-import { ProductStatus } from "../const/product.Enum";
+
 
 
 
@@ -11,6 +11,8 @@ export interface Iuser{
 export interface Iproduct{
     pName: string;
     productId: number;
-    pStatus :ProductStatus
+    pStatus :productStatus
 }
+
+export type productStatus = 'Inprogress' | 'Dispatched' | 'Delivered'
 

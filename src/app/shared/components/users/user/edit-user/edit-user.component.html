@@ -1,0 +1,9 @@
+
+
+        <div class="form-group">
+            <label for="userName">User Name</label>
+            <input type="text" #userName [value]="uObj.name" id="userName" placeholder="User Name" class="form-control">
+        </div>
+        <div class="text-right">
+            <button class="btn btn-info" (click)="onUpdateUser(userName.value)">Update User</button>
+        </div>

@@ -11,6 +11,8 @@ import { PageNotFoundComponent } from './shared/components/page-not-found/page-n
 import { UserComponent } from './shared/components/users/user/user.component';
 import { ProductComponent } from './shared/components/products/product/product.component';
 import { NavBarComponent } from './shared/components/nav-bar/nav-bar.component';
+import { EditUserComponent } from './shared/components/users/user/edit-user/edit-user.component';
+import { EditProductComponent } from './shared/components/products/product/edit-product/edit-product.component';
 
 @NgModule({
   declarations: [
@@ -21,7 +23,9 @@ import { NavBarComponent } from './shared/components/nav-bar/nav-bar.component';
     PageNotFoundComponent,
     UserComponent,
     ProductComponent,
-    NavBarComponent
+    NavBarComponent,
+    EditUserComponent,
+    EditProductComponent
   ],
   imports: [
     BrowserModule,

@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Iuser } from '../models/user';
+import { Router } from '@angular/router';
 
 @Injectable({
   providedIn: 'root'
@@ -23,7 +24,7 @@ export class UsersService {
       userId : 4
     },
   ]
-  constructor() { }
+  constructor(private _router : Router) { }
 
   getAllUsersApi(){
     return this.UsersArray;
@@ -33,5 +34,14 @@ export class UsersService {
     return this.UsersArray.find(user =>{
       return user.userId === id
     })!
+  }
+
+  getUpdateUser(userObj : Iuser){
+    this.UsersArray.forEach(obj =>{
+      if(obj.userId === userObj.userId){
+        obj.name = userObj.name;
+        this._router.navigate(['/users'])
+      }
+    })
   }
 }
