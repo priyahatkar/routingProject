@@ -9,18 +9,27 @@ export class ProductsService {
   public productArray: Array<Iproduct> =[
     {
       pName : "Iphone",
-      productId : 1,
-      pStatus : 'Inprogress'
+      productId : '1',
+      pStatus : 'Inprogress',
+      canReturn : 1,
     },
     {
       pName : "Redmi Y3",
-      productId : 2,
-      pStatus :'Dispatched'
+      productId : '2',
+      pStatus :'Dispatched',
+      canReturn : 0,
+    },
+    {
+      pName : "Samsung 14",
+      productId : '3',
+      pStatus: 'Delivered',
+      canReturn : 1,
     },
     {
       pName : "Samsung",
-      productId : 3,
-      pStatus: 'Delivered'
+      productId : '4',
+      pStatus: 'Dispatched',
+      canReturn : 0,
     }
   ]
   constructor( private _router : Router) { }
@@ -28,7 +37,7 @@ export class ProductsService {
   getAllProductApi(){
     return this.productArray;
   }
-  getSingleProduct(id : number){
+  getSingleProduct(id : string){
     return this.productArray.find(p =>{
       return p.productId === id
     })!
@@ -42,5 +51,17 @@ export class ProductsService {
         this._router.navigate(['/products'])
       }
     }) 
+  }
+
+  getNewAddProduct(prodObj : Iproduct){
+    this.productArray.push(prodObj);
+    this._router.navigate(['/products'])
+  }
+
+  getDeleteProductApi(id : string){
+    let getIndex = this.productArray.findIndex(p => p.productId === id)
+
+    let sendIndex = this.productArray.splice(getIndex, 1)
+    this._router.navigate(['/products'])
   }
 }

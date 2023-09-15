@@ -1,6 +1,23 @@
-<ul class="list-group">
-    <li class="list-group-item" *ngFor="let product of productsInfo" 
-    [routerLink]="['/products', product.productId]">
-        {{product.pName}}
-    </li>
-</ul>
+<div class="container">
+    <div class="row">
+        <div class="col-md-5">
+            <ul class="list-group">
+                <li class="list-group-item" *ngFor="let product of productsInfo" 
+                [routerLink]="['/products', product.productId]"
+                [queryParams]="{canEdit: product.canReturn}"
+                (click)="selectedProduct=product.productId"
+                [class.active]="selectedProduct===product.productId"
+                >
+                    {{product.pName}}
+                </li>
+            </ul>
+            <div class="text-right">
+                
+            <button class="btn btn-primary mt-4" [routerLink]="['/products','addProd']">Add Product</button>
+            </div>
+        </div>
+        <div class="col-md-7">
+            <router-outlet></router-outlet>
+        </div>
+    </div>
+</div>

@@ -3,6 +3,7 @@
 </p>
 
 
-<button 
-[routerLink]="['editUser']"
-class="btn btn-info">Edit User Details</button>
+<div class="text-right">
+   <button class="btn btn-info" (click)="onEditUser()">Edit User Details</button>
+<button class="btn btn-danger ml-3" (click)="onDeleteUser()">Delete User</button>
+</div>

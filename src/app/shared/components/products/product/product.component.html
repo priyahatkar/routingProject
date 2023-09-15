@@ -6,5 +6,5 @@
 
 
 <button 
-[routerLink]="['editProduct']"
-class="btn btn-info">Edit Product </button>
+class="btn btn-info" (click)="onEditProduct()">Edit Product </button>
+<button class="btn btn-danger ml-3" (click)="onDeleteProduct()">Delete Product</button>

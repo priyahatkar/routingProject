@@ -9,19 +9,23 @@ export class UsersService {
   public UsersArray : Array<Iuser>=[
     {
       name : "Jhon",
-      userId : 1
+      userId : '1',
+      role : "admin"
     },
     {
       name : "Mark",
-      userId : 2
+      userId : '2',
+      role : "user"
     },
     {
       name : "Jenny",
-      userId : 3
+      userId : '3',
+      role : "admin"
     },
     {
       name : "May",
-      userId : 4
+      userId : '4',
+      role : "user"
     },
   ]
   constructor(private _router : Router) { }
@@ -30,7 +34,7 @@ export class UsersService {
     return this.UsersArray;
   }
 
-  getSingleUser(id :number){
+  getSingleUser(id :string){
     return this.UsersArray.find(user =>{
       return user.userId === id
     })!
@@ -43,5 +47,17 @@ export class UsersService {
         this._router.navigate(['/users'])
       }
     })
+  }
+
+  addNewUsers(userObj : Iuser){
+    this.UsersArray.push(userObj)
+    this._router.navigate(['/users'])
+  }
+
+  getRemoveUser(id : string){
+    let getIndex = this.UsersArray.findIndex(uId => uId.userId === id);
+
+    let deleteId = this.UsersArray.splice(getIndex, 1);
+    this._router.navigate(['/users'])
   }
 }

@@ -14,6 +14,7 @@ import { NavBarComponent } from './shared/components/nav-bar/nav-bar.component';
 import { EditUserComponent } from './shared/components/users/user/edit-user/edit-user.component';
 import { EditProductComponent } from './shared/components/products/product/edit-product/edit-product.component';
 
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -25,7 +26,7 @@ import { EditProductComponent } from './shared/components/products/product/edit-
     ProductComponent,
     NavBarComponent,
     EditUserComponent,
-    EditProductComponent
+    EditProductComponent,
   ],
   imports: [
     BrowserModule,

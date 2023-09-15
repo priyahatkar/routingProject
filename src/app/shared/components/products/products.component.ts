@@ -9,6 +9,8 @@ import { ProductsService } from '../../services/products.service';
 })
 export class ProductsComponent implements OnInit {
   public productsInfo : Array<Iproduct>=[]
+  public canReturn !: number ;
+  public selectedProduct !: string;
   constructor(private _productService :ProductsService) { }
 
   ngOnInit(): void {

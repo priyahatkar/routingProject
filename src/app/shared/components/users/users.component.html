@@ -1,6 +1,23 @@
 
-<ul class="list-group">
-    <li class="list-group-item" *ngFor="let user of usersInfo" [routerLink]="['/users', user.userId]">
-        {{user.name}}
-    </li>
-</ul>
+<div class="container">
+    <div class="row">
+        <div class="col-md-5">
+            <ul class="list-group">
+                <li class="list-group-item" *ngFor="let user of usersInfo"
+                [queryParams]="{canEditUser: user.role}"
+                [routerLink]="['/users', user.userId]" (click)="selectedUsers=user.userId"
+                [ngClass]="{'active':selectedUsers===user.userId}"
+                >
+                
+                    {{user.name}}
+                </li>
+            </ul>
+            <div class="text-right">
+                <button class="btn btn-primary mt-4" [routerLink]="['/users','addUser']">Add Product</button>
+            </div>
+        </div>
+        <div class="col-md-7">
+            <router-outlet></router-outlet>
+        </div>
+    </div>
+</div>
