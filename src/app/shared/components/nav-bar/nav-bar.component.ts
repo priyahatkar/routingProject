@@ -13,10 +13,6 @@ export class NavBarComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  onLogIn(){
-    this._authService.logInApp()
-  }
-
   onLogOut(){
     this._authService.logOutFromApp()
   }

@@ -9,17 +9,20 @@ import { PageNotFoundComponent } from './shared/components/page-not-found/page-n
 import { EditProductComponent } from './shared/components/products/product/edit-product/edit-product.component';
 import { EditUserComponent } from './shared/components/users/user/edit-user/edit-user.component';
 import { AuthGard } from './shared/services/auth.gaurd';
+import { AuthComponent } from './shared/components/auth/auth.component';
 
 const routes: Routes = [
   {
-    path : "", component : DashBoaredComponent
+    path : "", component : AuthComponent
   },
   {
-    path : "dashboard", component : DashBoaredComponent
+    path : "dashboard", component : DashBoaredComponent,
+    canActivate :[AuthGard],
   },
   {
     path : "users", component : UsersComponent,
     canActivate :[AuthGard],
+    canActivateChild : [AuthGard],
     children :[
       {
         path : "addUser", component : EditUserComponent 
@@ -32,18 +35,10 @@ const routes: Routes = [
       }
     ]
   },
-  // {
-  //   path : "users/addUser", component : EditUserComponent
-  // },
-  // {
-  //   path : "users/:userId", component : UserComponent
-  // },
-  // {
-  //   path : "users/:userId/editUser", component : EditUserComponent
-  // },
   {
     path : "products",component : ProductsComponent,
     canActivate :[AuthGard],
+    canActivateChild : [AuthGard],
     children :[
       {
         path : "addProd",component : EditProductComponent
@@ -56,15 +51,6 @@ const routes: Routes = [
       }
     ]
   },
-  // {
-  //   path : "products/addProd",component : EditProductComponent
-  // },
-  // {
-  //   path : "products/:productId", component : ProductComponent
-  // },
-  // {
-  //   path : "products/:productId/editProduct", component : EditProductComponent
-  // },
   {
     path : "pageNotFound", component : PageNotFoundComponent
   },

@@ -13,6 +13,7 @@ import { ProductComponent } from './shared/components/products/product/product.c
 import { NavBarComponent } from './shared/components/nav-bar/nav-bar.component';
 import { EditUserComponent } from './shared/components/users/user/edit-user/edit-user.component';
 import { EditProductComponent } from './shared/components/products/product/edit-product/edit-product.component';
+import { AuthComponent } from './shared/components/auth/auth.component';
 
 
 @NgModule({
@@ -27,6 +28,7 @@ import { EditProductComponent } from './shared/components/products/product/edit-
     NavBarComponent,
     EditUserComponent,
     EditProductComponent,
+    AuthComponent,
   ],
   imports: [
     BrowserModule,
