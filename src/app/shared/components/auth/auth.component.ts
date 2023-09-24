@@ -27,4 +27,5 @@ export class AuthComponent implements OnInit {
     this.passType = !this.passType;
     this.vissible = !this.vissible;
   }
+ 
 }
