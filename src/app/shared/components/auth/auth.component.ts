@@ -9,16 +9,22 @@ import { Router } from '@angular/router';
 })
 export class AuthComponent implements OnInit {
   public allReadyHadAccount : boolean = true;
+  public passType : boolean = true;
+  public vissible : boolean = true;
   constructor(private _authService : AuthService,
               private _router : Router
       ) { }
 
-  ngOnInit(): void {
+  ngOnInit(): void {}
+
+
+  onLogIn(userName : string, password : string){
+    this._authService.logInApp(userName, password)
+    this._router.navigate(['/home'])
   }
-
-
-  onLogIn(){
-    this._authService.logInApp()
-    this._router.navigate(['/dashboard'])
+  
+  onLock(){
+    this.passType = !this.passType;
+    this.vissible = !this.vissible;
   }
 }

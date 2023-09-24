@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Params, Router } from '@angular/router';
 import { Iproduct } from 'src/app/shared/models/user';
+import { ProductsResolverService } from 'src/app/shared/services/products-resolver.service';
 import { ProductsService } from 'src/app/shared/services/products.service';
 
 @Component({
@@ -13,19 +14,23 @@ export class ProductComponent implements OnInit {
   public productId !: string;
   constructor(private _productService :ProductsService, 
                 private _route:ActivatedRoute,
-                private _router : Router) { }
+                private _router : Router,
+                private _productResolveService : ProductsResolverService
+                ) {
+              // this.productinfo=this._productResolveService.resolve
+          }
 
   ngOnInit(): void {
-    this.productId = this._route.snapshot.params['productId']
-    this.productinfo = this._productService.getSingleProduct(this.productId)
-    console.log(this.productId);
+    // this.productId = this._route.snapshot.params['productId']
+    // this.productinfo = this._productService.getSingleProduct(this.productId)
+    // console.log(this.productId);
 
 
-    this._route.params
-      .subscribe((params:Params)=>{
-        this.productId = params['productId'];
-        this.productinfo =this._productService.getSingleProduct(this.productId)
-      })
+    // this._route.params
+    //   .subscribe((params:Params)=>{
+    //     this.productId = params['productId'];
+    //     this.productinfo =this._productService.getSingleProduct(this.productId)
+    //   })
   }
   
   onEditProduct(){

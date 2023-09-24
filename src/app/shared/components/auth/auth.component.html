@@ -8,24 +8,32 @@
                 <div class="mb3">
                     <label for="email"></label>
                     <div class="input-group mb-3">
-                        <input type="text" class="form-control" placeholder="Email">
+                        <input type="text" class="form-control" #userName placeholder="User Name">
                         <div class="input-group-prepend">
-                            <span class="input-group-text" id="basic-addon1"><i class="fa-solid fa-user-plus"></i></span>
+                            <span class="input-group-text" id="basic-addon1">
+                                <i class="fa-solid fa-user-plus"></i>
+                            </span>
                         </div>
                     </div>
                 </div>
                 <div class="mb3">
                     <label for="password"></label>
                     <div class="input-group mb-3">
-                        <input type="text" class="form-control" placeholder="Password">
+                        <input [type]="passType ? 'password' : 'text'" 
+                        class="form-control" #password 
+                        placeholder="Password"
+                        appBlockCopyPaste
+                        >
                         <div class="input-group-prepend">
-                            <span class="input-group-text" id="basic-addon1"><i class="fa-solid fa-lock"></i></span>
+                            <span class="input-group-text" id="basic-addon1" (click)="onLock()">
+                                <i class="fa-solid" [ngClass]="vissible ? 'fa-lock' : 'fa-unlock'"></i>
+                            </span>
                         </div>
                     </div>
                 </div>
                 <div class="text-right">
                     <button class="btn btn-outline-primary"
-                    (click)="onLogIn()"
+                    (click)="onLogIn(userName.value,password.value)"
                     >Log In</button>
                 </div>
                 
@@ -46,7 +54,9 @@
                 <div class="mb3">
                     <label for="password"></label>
                     <div class="input-group mb-3">
-                        <input type="text" class="form-control" placeholder="Conform Password">
+                        <input type="text" class="form-control"
+                        appBlockCopyPaste
+                        placeholder="Conform Password">
                         <div class="input-group-prepend">
                             <span class="input-group-text" id="basic-addon1"><i class="fa-solid fa-lock"></i></span>
                         </div>
@@ -55,7 +65,9 @@
                 <div class="mb3">
                     <label for="password"></label>
                     <div class="input-group mb-3">
-                        <input type="text" class="form-control" placeholder="Password">
+                        <input type="text" class="form-control"
+                        appBlockCopyPaste
+                        placeholder="Password">
                         <div class="input-group-prepend">
                             <span class="input-group-text" id="basic-addon1"><i class="fa-solid fa-lock"></i></span>
                         </div>

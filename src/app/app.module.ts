@@ -14,6 +14,10 @@ import { NavBarComponent } from './shared/components/nav-bar/nav-bar.component';
 import { EditUserComponent } from './shared/components/users/user/edit-user/edit-user.component';
 import { EditProductComponent } from './shared/components/products/product/edit-product/edit-product.component';
 import { AuthComponent } from './shared/components/auth/auth.component';
+import { AdminComponent } from './shared/components/admin/admin.component';
+import {MatSnackBarModule} from '@angular/material/snack-bar';
+import { SuperAdminsComponent } from './shared/components/super-admins/super-admins.component'
+import { BlockCopyPasteDirective } from './shared/directive/priventCopyPaste';
 
 
 @NgModule({
@@ -29,11 +33,15 @@ import { AuthComponent } from './shared/components/auth/auth.component';
     EditUserComponent,
     EditProductComponent,
     AuthComponent,
+    AdminComponent,
+    SuperAdminsComponent,
+    BlockCopyPasteDirective
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
-    BrowserAnimationsModule
+    BrowserAnimationsModule,
+    MatSnackBarModule,
   ],
   providers: [],
   bootstrap: [AppComponent]

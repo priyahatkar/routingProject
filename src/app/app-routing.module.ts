@@ -10,17 +10,23 @@ import { EditProductComponent } from './shared/components/products/product/edit-
 import { EditUserComponent } from './shared/components/users/user/edit-user/edit-user.component';
 import { AuthGard } from './shared/services/auth.gaurd';
 import { AuthComponent } from './shared/components/auth/auth.component';
+import { AdminComponent } from './shared/components/admin/admin.component';
+import { userRoleGaurd as userRoleGuard } from './shared/services/user-role.gaurd';
+import { SuperAdminsComponent } from './shared/components/super-admins/super-admins.component';
+import { ProductsResolverService } from './shared/services/products-resolver.service';
 
 const routes: Routes = [
   {
     path : "", component : AuthComponent
   },
   {
-    path : "dashboard", component : DashBoaredComponent,
+    path : "home", component : DashBoaredComponent,
+    title: "Home",
     canActivate :[AuthGard],
   },
   {
     path : "users", component : UsersComponent,
+    title : "Users",
     canActivate :[AuthGard],
     canActivateChild : [AuthGard],
     children :[
@@ -37,6 +43,7 @@ const routes: Routes = [
   },
   {
     path : "products",component : ProductsComponent,
+    title : "Products",
     canActivate :[AuthGard],
     canActivateChild : [AuthGard],
     children :[
@@ -44,7 +51,8 @@ const routes: Routes = [
         path : "addProd",component : EditProductComponent
       },
       {
-        path : ":productId", component : ProductComponent
+        path : ":productId", component : ProductComponent,
+        resolve : {product : ProductsResolverService}
       },
       {
         path : ":productId/editProduct", component : EditProductComponent
@@ -52,7 +60,26 @@ const routes: Routes = [
     ]
   },
   {
-    path : "pageNotFound", component : PageNotFoundComponent
+    path : "admin", component : AdminComponent,
+    title : "Admin",
+    canActivate :[AuthGard, userRoleGuard],
+    data : {
+      userRole : ["admin","superAdmin"],
+    }
+  },
+  {
+    path : "superAdmin", component : SuperAdminsComponent,
+    title : "superAdmin",
+    canActivate :[AuthGard, userRoleGuard],
+    data : {
+      userRole : ["superAdmin"],
+    }
+  },
+  {
+    path : "pageNotFound", component : PageNotFoundComponent,
+    data : {
+      msg : "Page Not Found"
+    }
   },
   {
     path : "**", redirectTo:"pageNotFound"
