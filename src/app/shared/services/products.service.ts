@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Iproduct, productStatus } from '../models/user';
 import { Router } from '@angular/router';
+import { SnackBarService } from './snack-bar.service';
 
 @Injectable({
   providedIn: 'root'
@@ -32,7 +33,7 @@ export class ProductsService {
       canReturn : 0,
     }
   ]
-  constructor( private _router : Router) { }
+  constructor( private _router : Router, private _snackBar : SnackBarService) { }
 
   getAllProductApi(){
     return this.productArray;
@@ -49,6 +50,7 @@ export class ProductsService {
         obj.pName = pObj.pName;
         obj.pStatus = pObj.pStatus;
         this._router.navigate(['/products'])
+        this._snackBar.openSnackBar(`Your Product Is Updated ${pObj.pName} and Status Is ${pObj.pStatus}`, 'Close')
       }
     }) 
   }
@@ -56,6 +58,7 @@ export class ProductsService {
   getNewAddProduct(prodObj : Iproduct){
     this.productArray.push(prodObj);
     this._router.navigate(['/products'])
+    this._snackBar.openSnackBar(`Your Product Is Added ${prodObj.pName} and Status Is ${prodObj.pStatus}`, 'Close')
   }
 
   getDeleteProductApi(id : string){

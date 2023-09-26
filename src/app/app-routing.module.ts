@@ -14,6 +14,8 @@ import { AdminComponent } from './shared/components/admin/admin.component';
 import { userRoleGaurd as userRoleGuard } from './shared/services/user-role.gaurd';
 import { SuperAdminsComponent } from './shared/components/super-admins/super-admins.component';
 import { ProductsResolverService } from './shared/services/products-resolver.service';
+import { UserResolverService } from './shared/services/user-resolver.service';
+import { CanDectivateGuard } from './shared/services/can-dectivate.guard';
 
 const routes: Routes = [
   {
@@ -22,7 +24,7 @@ const routes: Routes = [
   {
     path : "home", component : DashBoaredComponent,
     title: "Home",
-    canActivate :[AuthGard],
+    // canActivate :[AuthGard],
   },
   {
     path : "users", component : UsersComponent,
@@ -34,10 +36,12 @@ const routes: Routes = [
         path : "addUser", component : EditUserComponent 
       },
       {
-        path : ":userId", component : UserComponent
+        path : ":userId", component : UserComponent,
+        resolve : {user : UserResolverService}
       },
       {
-        path : ":userId/editUser" , component : EditUserComponent
+        path : ":userId/editUser" , component : EditUserComponent,
+        canDeactivate : [CanDectivateGuard]
       }
     ]
   },
@@ -55,7 +59,8 @@ const routes: Routes = [
         resolve : {product : ProductsResolverService}
       },
       {
-        path : ":productId/editProduct", component : EditProductComponent
+        path : ":productId/editProduct", component : EditProductComponent,
+        canDeactivate : [CanDectivateGuard]
       }
     ]
   },

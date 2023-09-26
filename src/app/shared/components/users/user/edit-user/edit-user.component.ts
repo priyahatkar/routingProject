@@ -1,5 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
+import { IcanDeactivate } from 'src/app/shared/models/product';
 import { Irole, Iuser } from 'src/app/shared/models/user';
 import { UsersService } from 'src/app/shared/services/users.service';
 import { UtilityService } from 'src/app/shared/services/utility.service';
@@ -9,10 +10,12 @@ import { UtilityService } from 'src/app/shared/services/utility.service';
   templateUrl: './edit-user.component.html',
   styleUrls: ['./edit-user.component.scss']
 })
-export class EditUserComponent implements OnInit {
+export class EditUserComponent implements OnInit , IcanDeactivate {
   public uId !: string;
   public uObj !: Iuser;
   public canEditUser : boolean = true;
+  @ViewChild("userName") userName !: ElementRef<HTMLInputElement>; 
+  @ViewChild("userRole") userRole !: ElementRef<HTMLSelectElement>; 
   constructor(private _userService : UsersService, 
     private _route : ActivatedRoute, private _utilityService : UtilityService) { }
     
@@ -25,6 +28,15 @@ export class EditUserComponent implements OnInit {
 
     if(this._route.snapshot.queryParams['canEditUser'] === 'user'){
       this.canEditUser = false
+    }
+  }
+  
+  canDeactivate(){
+    if(this.uObj.name !== this.userName.nativeElement.value || this.uObj.role !== this.userRole.nativeElement.value){
+      let msgConfirm = confirm(`Are sure you want to discard changes`)
+      return msgConfirm
+    }else{
+      return true
     }
   }
 

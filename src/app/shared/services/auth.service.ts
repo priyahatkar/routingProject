@@ -11,6 +11,11 @@ export class AuthService {
   isAuthenticated(): Promise<boolean>{
     return new Promise<boolean>((resolve, reject) =>{
       setTimeout(()=>{
+        if(localStorage.getItem('token')){
+          this.logInStatus = true
+        }else{
+          this.logInStatus = false
+        }
         resolve(this.logInStatus)
       },300)
     })
@@ -23,16 +28,20 @@ export class AuthService {
       this.logInStatus = true;
       localStorage.setItem("token", "JWT token");
       localStorage.setItem("userRole", "candidate");
+      this._router.navigate(['home'])
     }else if(userName === "akkiHat24@gamail.com" && password === "akkiHat24"){
       this.logInStatus = true;
       localStorage.setItem("token", "JWT token");
       localStorage.setItem("userRole", "admin");
+      this._router.navigate(['home'])
     }else if(userName === "ajayHat1@gmail.com" && password === "ajayHat1"){
       this.logInStatus = true;
       localStorage.setItem("token", "JWT token");
       localStorage.setItem("userRole", "superAdmin");
+      this._router.navigate(['home'])
     }else{
       this._sanckBar.openSnackBar('Invalid username or password', 'Close');
+      this._router.navigate([''])
     }
   }
 

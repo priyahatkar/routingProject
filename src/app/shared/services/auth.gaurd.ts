@@ -12,22 +12,25 @@ export class AuthGard implements CanActivate, CanActivateChild{
     
     canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): boolean  | Observable<boolean> | Promise<boolean> {
         return this._authService.isAuthenticated().then((res : boolean) =>{
-            if(res === true){
-                return true
-            }else{
-                return false
-            }
+            // if(res === true){
+            //     return true
+            // }else{
+            //     return false
+            // }
+            return (res === true)? true : false
         })
     }
 
     canActivateChild(childRoute: ActivatedRouteSnapshot, state: RouterStateSnapshot): boolean | Observable<boolean> | Promise<boolean> {
-        return this._authService.isAuthenticated().then((res : boolean)=>{
-            if(res === true) {
-                return true
-            }else{
-                return false
-            }
-        })
+        // return this._authService.isAuthenticated().then((res : boolean)=>{
+        //     // if(res === true) {
+        //     //     return true
+        //     // }else{
+        //     //     return false
+        //     // }
+
+        // })
+        return this.canActivate(childRoute, state)
     }
     
 }

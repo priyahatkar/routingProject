@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Iuser } from '../models/user';
 import { Router } from '@angular/router';
+import { SnackBarService } from './snack-bar.service';
 
 @Injectable({
   providedIn: 'root'
@@ -28,7 +29,7 @@ export class UsersService {
       role : "user"
     },
   ]
-  constructor(private _router : Router) { }
+  constructor(private _router : Router, private _sanckBar : SnackBarService) { }
 
   getAllUsersApi(){
     return this.UsersArray;
@@ -44,7 +45,9 @@ export class UsersService {
     this.UsersArray.forEach(obj =>{
       if(obj.userId === userObj.userId){
         obj.name = userObj.name;
-        this._router.navigate(['/users'])
+        this._router.navigate(['/users']);
+        this._sanckBar.openSnackBar(`Your Product Is Updated ${userObj.name} and Status Is ${userObj.role}`, 'Close')
+      
       }
     })
   }
@@ -52,6 +55,7 @@ export class UsersService {
   addNewUsers(userObj : Iuser){
     this.UsersArray.push(userObj)
     this._router.navigate(['/users'])
+    this._sanckBar.openSnackBar(`Your Product Is Updated ${userObj.name} and Status Is ${userObj.role}`, 'Close')
   }
 
   getRemoveUser(id : string){

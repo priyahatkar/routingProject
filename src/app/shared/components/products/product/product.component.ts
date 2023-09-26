@@ -17,15 +17,19 @@ export class ProductComponent implements OnInit {
                 private _router : Router,
                 private _productResolveService : ProductsResolverService
                 ) {
-              // this.productinfo=this._productResolveService.resolve
+              this._route.data
+                .subscribe(res =>{
+                  console.log(res)
+                  this.productinfo = res['product']
+                })
           }
 
   ngOnInit(): void {
     // this.productId = this._route.snapshot.params['productId']
     // this.productinfo = this._productService.getSingleProduct(this.productId)
     // console.log(this.productId);
-
-
+    console.log('Hello')
+    
     // this._route.params
     //   .subscribe((params:Params)=>{
     //     this.productId = params['productId'];

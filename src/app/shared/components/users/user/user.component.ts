@@ -13,21 +13,26 @@ export class UserComponent implements OnInit {
   public singleUser !: Iuser;
   constructor(private _usersServices : UsersService,
               private _route : ActivatedRoute,
-              private _router : Router) { }
+              private _router : Router,) {
+                this._route.data
+                  .subscribe(res =>{
+                    this.singleUser =res['user']
+                  })
+              }
 
   ngOnInit(): void {
-    this.userId = this._route.snapshot.params['userId'];
-    // this._usersServices.getSingleUser(this.userId)
-    this.singleUser = this._usersServices.getSingleUser(this.userId)
+    // this.userId = this._route.snapshot.params['userId'];
+    // // this._usersServices.getSingleUser(this.userId)
+    // this.singleUser = this._usersServices.getSingleUser(this.userId)
   
+    console.log('hello')
 
-
-    this._route.params
-    .subscribe((params : Params)=>{
-      console.log(params);
-      this.userId = params['userId'];
-      this.singleUser =this._usersServices.getSingleUser(this.userId)
-    })
+    // this._route.params
+    // .subscribe((params : Params)=>{
+    //   console.log(params);
+    //   this.userId = params['userId'];
+    //   this.singleUser =this._usersServices.getSingleUser(this.userId)
+    // })
   }
 
   onEditUser(){

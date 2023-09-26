@@ -20,12 +20,11 @@ export class AuthComponent implements OnInit {
 
   onLogIn(userName : string, password : string){
     this._authService.logInApp(userName, password)
-    this._router.navigate(['/home'])
+    // this._router.navigate(['/home'])
   }
   
   onLock(){
     this.passType = !this.passType;
     this.vissible = !this.vissible;
   }
- 
 }
